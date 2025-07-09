@@ -1,8 +1,7 @@
 import React from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import Sidebar from "./components/Sidebar";
-import ButtonTheme from "./components/ButtonTheme/ButtonTheme";
+import { Sidebar, ButtonTheme } from "./components/index";
 
 library.add(fas);
 
