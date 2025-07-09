@@ -31,15 +31,15 @@ const themes = {
     buttonHover: `var(--color-button-background-light-active)`,
   },
   dark: {
-    sidebarBackground: "#202127",
-    sidebarHover: "#2d2e34",
-    sidebarActive: "#393a3f",
-    textDefault: "#f0f2ff",
-    textHover: "#f0f2ff",
-    textActive: "#f0f2ff",
-    logoColor: "#3b82f6",
-    buttonBackground: "#202127",
-    buttonHover: "#4b5966",
+    sidebarBackground: `var(--color-sidebar-background-dark-default)`,
+    sidebarHover: `var(--color-sidebar-background-dark-hover)`,
+    sidebarActive: `var(--color-sidebar-background-dark-active)`,
+    textDefault: `var(--color-text-dark-default)`,
+    textHover: `var(--color-text-dark-hover)`,
+    textActive: `var(--color-text-dark-active)`,
+    logoColor: `var(--color-text-logo-dark-default)`,
+    buttonBackground: `var(--color-button-background-dark-default)`,
+    buttonHover: `var(--color-button-background-dark-active)`,
   },
 };
 
@@ -61,6 +61,7 @@ const LogoBlock = styled.div`
   margin: 1rem;
   min-height: 2.5rem;
   transition: all 0.3s ease;
+  position: relative;
 
   img {
     width: 2rem;
@@ -77,12 +78,11 @@ const LogoBlock = styled.div`
     color: ${({ theme }) => theme.logoColor};
     margin-left: 0.5rem;
     white-space: nowrap;
-    display: ${({ $isOpened }) => ($isOpened ? "inline" : "none")};
     opacity: ${({ $isOpened }) => ($isOpened ? 1 : 0)};
-    width: ${({ $isOpened }) => ($isOpened ? "auto" : "0")};
-    height: ${({ $isOpened }) => ($isOpened ? "auto" : "0")};
-    transition: opacity 0.3s ease;
-    overflow: hidden;
+    transition: opacity 0.2s ease
+      ${({ $isOpened }) => ($isOpened ? "0.1s" : "0s")};
+    position: ${({ $isOpened }) => ($isOpened ? "static" : "absolute")};
+    visibility: ${({ $isOpened }) => ($isOpened ? "visible" : "hidden")};
   }
 `;
 
@@ -129,22 +129,24 @@ const MenuItem = styled.div`
     $active ? theme.sidebarActive : "transparent"};
   color: ${({ $active, theme }) =>
     $active ? theme.textActive : theme.textDefault};
+  overflow: hidden;
 
   svg {
     margin-right: ${({ $isOpened }) => ($isOpened ? "0.75rem" : "0")};
     width: ${({ $isOpened }) => ($isOpened ? "1rem" : "1.5rem")};
     height: auto;
-    transition: margin-right 0.3s ease;
+    transition: all 0.3s ease;
     flex-shrink: 0;
+    min-width: ${({ $isOpened }) => ($isOpened ? "1rem" : "1.5rem")};
   }
 
   span {
-    display: ${({ $isOpened }) => ($isOpened ? "inline" : "none")};
     opacity: ${({ $isOpened }) => ($isOpened ? 1 : 0)};
-    width: ${({ $isOpened }) => ($isOpened ? "auto" : "0")};
-    height: ${({ $isOpened }) => ($isOpened ? "auto" : "0")};
-    overflow: hidden;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease
+      ${({ $isOpened }) => ($isOpened ? "0.1s" : "0s")};
+    white-space: nowrap;
+    position: ${({ $isOpened }) => ($isOpened ? "static" : "absolute")};
+    visibility: ${({ $isOpened }) => ($isOpened ? "visible" : "hidden")};
   }
 
   &:hover {
